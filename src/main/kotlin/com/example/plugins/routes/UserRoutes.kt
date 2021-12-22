@@ -70,6 +70,12 @@ fun Route.selectUserById(){
     }
 }
 
+
+
+
+
+
+
 fun Route.deleteUSerById(){
     delete ("/{id?}") {
         //val name = call.request.queryParameters["name"] ?: throw Exception("should not be null")
