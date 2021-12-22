@@ -11,14 +11,16 @@ import org.jetbrains.exposed.sql.transactions.transaction
  * @author 空城
  * @date 2021-12-20 15:33
  **/
-//添加班级
-fun addClass(classData: ClassEntity): EntityID<Int> {
-    val id = transaction {
-        //addLogger(StdOutSqlLogger)
-        ClassesTable.insertAndGetId {
-            it[classname] = classData.classname!!
-            it[classNum] = classData.classNum!!
+class ClassRepositries {
+    //添加班级
+    fun addClass(classData: ClassEntity): EntityID<Int> {
+        val id = transaction {
+            //addLogger(StdOutSqlLogger)
+            ClassesTable.insertAndGetId {
+                it[classname] = classData.classname!!
+                it[classNum] = classData.classNum!!
+            }
         }
+        return id
     }
-    return id
 }

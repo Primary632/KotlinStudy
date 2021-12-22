@@ -22,4 +22,16 @@ class UserService {
     fun sortUser(): List<UserEntity> {
         return userRepo.userSorts()
     }
+
+    fun selectOneUserById(id2: String): List<UserEntity> {
+        return userRepo.selectOneUserById(id2)
+    }
+
+    fun deleteUserById(id: Int): Any {
+        return userRepo.deleteUserById(id)
+    }
+
+    fun updateUser(user: UserEntity) {
+        return userRepo.updateUser(user)
+    }
 }

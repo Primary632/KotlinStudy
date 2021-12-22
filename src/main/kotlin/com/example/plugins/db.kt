@@ -38,7 +38,6 @@ fun Application.databaseCollection() {
 //            classId = 1
 //        }
 //    }
-//
 //    transaction {
 //        addLogger(StdOutSqlLogger)
 //        SchemaUtils.create(classes)

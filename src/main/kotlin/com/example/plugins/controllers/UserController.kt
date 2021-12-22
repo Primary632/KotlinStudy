@@ -2,7 +2,10 @@ package com.example.plugins.controllers
 
 import com.example.plugins.entities.UserEntity
 import com.example.plugins.entities.UserDao
+import com.example.plugins.entities.Users
 import com.example.plugins.services.UserService
+import io.ktor.application.*
+import io.ktor.response.*
 import org.jetbrains.exposed.dao.id.EntityID
 
 /**
@@ -14,11 +17,7 @@ import org.jetbrains.exposed.dao.id.EntityID
 class UserController {
     private val userService:UserService= UserService()
     //添加用户
-    fun creatUser(user:UserEntity){
-
-    }
-
-    fun addOneUser(user: UserEntity?) : EntityID<Int> {
+       fun addOneUser(user: UserEntity?) : EntityID<Int> {
         var userEt:UserEntity? =null
         if (user != null) {
             if (userEt != null) {
@@ -34,6 +33,28 @@ class UserController {
 
     fun userSort(): List<UserEntity> {
        return userService.sortUser()
+    }
+
+    suspend fun selectOneUserById(id2: String?, call: ApplicationCall){
+        if(id2!=null){
+            call.respond(userService.selectOneUserById(id2))
+        }
+    }
+
+    suspend fun deleteUserById(id: Int, call: ApplicationCall) {
+        val i = userService.deleteUserById(id)
+        if (i==0)
+            call.respond("删除失败")
+        else
+            call.respond("删除成功")
+    }
+
+     suspend fun updateUser(user: UserEntity, call : ApplicationCall) {
+         //user==null ?: throw Exception("you don't print null ")
+
+             userService.updateUser(user)
+             call.respond("更新成功")
+
     }
 
 }

@@ -9,7 +9,7 @@ import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 
 
-class UserRepositries{
+class UserRepositries {
 
     //添加学生
     fun addUser(user: UserEntity?): EntityID<Int> {
@@ -32,9 +32,9 @@ class UserRepositries{
     }
 
     //排序
-    fun userSorts():List<UserEntity>{
+    fun userSorts(): List<UserEntity> {
         return transaction {
-            Users.selectAll().map { UserEntity.fromRow(it)}
+            Users.selectAll().map { UserEntity.fromRow(it) }
         }
     }
 //fun userList
@@ -44,7 +44,7 @@ class UserRepositries{
 
     //根据学生ID查找学生
     fun selectOneUserById(id: String): List<UserEntity> {
-        val user= transaction {
+        val user = transaction {
             //SchemaUtils.create(User)
             Users.select { Users.id eq id.toInt() }.map {
                 UserEntity.fromRow(it)
@@ -54,14 +54,27 @@ class UserRepositries{
     }
 
     //修改学生信息 根据ID
-    fun updateUser(id:Int){
+    fun updateUser(user: UserEntity?) {
 
-        var user = transaction {
-            addLogger(StdOutSqlLogger)
-            val users=UserDao.findById(id)
-            if (users != null) {
-                users.name="我名字变了！！"
+
+        transaction {
+            if (user != null) {
+                addLogger(StdOutSqlLogger)
+                Users.update({ Users.id eq user.id }) {
+                    it[name] = user.name!!
+                    it[address] = user.address!!
+                }
+
             }
         }
+
+    }
+
+    fun deleteUserById(id: Int): Int {
+       var user= transaction {
+            Users.deleteWhere { Users.id eq id }
+        }
+
+           return user
     }
 }

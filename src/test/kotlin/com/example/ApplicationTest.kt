@@ -8,6 +8,7 @@ import io.ktor.request.*
 import kotlin.test.*
 import io.ktor.server.testing.*
 import com.example.plugins.*
+import com.example.plugins.routes.configureRouting
 
 class ApplicationTest {
     @Test

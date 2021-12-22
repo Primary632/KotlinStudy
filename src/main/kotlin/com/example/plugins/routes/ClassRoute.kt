@@ -1,7 +1,6 @@
 package com.example.plugins.routes
 
 import com.example.plugins.entities.ClassEntity
-import com.example.plugins.entities.repositries.addClass
 import io.ktor.application.*
 import io.ktor.request.*
 import io.ktor.routing.*
