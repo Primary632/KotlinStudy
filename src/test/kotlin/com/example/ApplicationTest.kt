@@ -1,14 +1,11 @@
 package com.example
 
-import io.ktor.routing.*
-import io.ktor.http.*
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.request.*
-import kotlin.test.*
-import io.ktor.server.testing.*
-import com.example.plugins.*
 import com.example.plugins.routes.configureRouting
+import io.ktor.http.*
+import io.ktor.server.testing.*
+import org.junit.After
+import kotlin.test.Test
+import kotlin.test.assertEquals
 
 class ApplicationTest {
     @Test
@@ -20,4 +17,11 @@ class ApplicationTest {
             }
         }
     }
+    @org.junit.Test
+    fun test(){
+        println("hello")
+    }
+
+
+
 }
